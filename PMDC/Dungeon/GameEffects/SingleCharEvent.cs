@@ -1512,14 +1512,18 @@ namespace PMDC.Dungeon
                             while (effectiveLevel < DataManager.Instance.Start.MaxLevel && recipient.EXP + DungeonScene.Instance.GainedEXP[ii] >= growthData.GetExpTo(recipient.Level, effectiveLevel + 1))
                                 effectiveLevel++;
 
-                            int exp = GetExp(monsterForm.ExpYield, context.User.Level, effectiveLevel);
+                            int exp = monsterForm is DigimonFormData
+                                ? DigimonExperience.Award(monsterForm.ExpYield, context.User.Level, effectiveLevel, growth)
+                                : GetExp(monsterForm.ExpYield, context.User.Level, effectiveLevel);
                             DungeonScene.Instance.GainedEXP[ii] += exp;
                         }
                         for (int ii = 0; ii < DungeonScene.Instance.ActiveTeam.Assembly.Count; ii++)
                         {
                             if (!DungeonScene.Instance.ActiveTeam.Assembly[ii].Absentee)
                             {
-                                int exp = GetExp(monsterForm.ExpYield, context.User.Level, DungeonScene.Instance.ActiveTeam.Assembly[ii].Level);
+                                int exp = monsterForm is DigimonFormData
+                                    ? DigimonExperience.Award(monsterForm.ExpYield, context.User.Level, DungeonScene.Instance.ActiveTeam.Assembly[ii].Level, DataManager.Instance.GetMonster(DungeonScene.Instance.ActiveTeam.Assembly[ii].BaseForm.Species).EXPTable)
+                                    : GetExp(monsterForm.ExpYield, context.User.Level, DungeonScene.Instance.ActiveTeam.Assembly[ii].Level);
                                 handoutAssemblyExp(DungeonScene.Instance.ActiveTeam.Assembly[ii], exp);
                             }
                         }
