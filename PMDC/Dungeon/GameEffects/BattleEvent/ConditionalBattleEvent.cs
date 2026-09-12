@@ -1070,6 +1070,7 @@ namespace PMDC.Dungeon
         protected TargetNeededEvent(TargetNeededEvent other)
             : this()
         {
+            Target = other.Target;
             foreach (BattleEvent battleEffect in other.BaseEvents)
                 BaseEvents.Add((BattleEvent)battleEffect.Clone());
         }

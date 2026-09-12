@@ -3542,7 +3542,7 @@ namespace PMDC.Dungeon
             RestoreAll = restoreAll;
         }
 
-        public override GameEvent Clone() { return new DeepBreathEvent(); }
+        public override GameEvent Clone() { return new DeepBreathEvent(RestoreAll); }
 
         public override IEnumerator<YieldInstruction> Apply(GameEventOwner owner, Character ownerChar, SingleCharContext context)
         {
