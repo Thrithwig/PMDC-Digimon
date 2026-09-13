@@ -10,6 +10,10 @@ namespace PMDC.Data
     [Serializable]
     public class DigimonFormData : MonsterFormData
     {
+        /// <summary>Cyber Sleuth's Virus/Vaccine/Data/Free classification.</summary>
+        public string DigimonAttribute = "";
+        public override string SummaryAttribute => DigimonAttribute ?? "";
+
         public List<int[]> LevelStats = new List<int[]>();
         private int Column(Stat stat)
         {
