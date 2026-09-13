@@ -14,9 +14,9 @@ namespace PMDC.Data
         public string DigimonAttribute = "";
         public override string SummaryAttribute => DigimonAttribute ?? "";
 
-        /// <summary>Digimon Wiki's physical species classification.</summary>
-        public string Family_Type = "";
-        public override string SummaryFamilyType => Family_Type ?? "";
+        /// <summary>Every Digimon Wiki physical species classification, in wiki order. A Digimon may belong to several.</summary>
+        public List<string> Family_Types = new List<string>();
+        public override string SummaryFamilyType => Family_Types == null ? "" : String.Join(" / ", Family_Types);
 
         public List<int[]> LevelStats = new List<int[]>();
         private int Column(Stat stat)
