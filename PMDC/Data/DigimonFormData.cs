@@ -14,6 +14,10 @@ namespace PMDC.Data
         public string DigimonAttribute = "";
         public override string SummaryAttribute => DigimonAttribute ?? "";
 
+        /// <summary>Primary Field selected from the sourced Digimon family catalog.</summary>
+        public string DigimonFamily = "";
+        public override string SummaryFamily => DigimonFamily ?? "";
+
         public List<int[]> LevelStats = new List<int[]>();
         private int Column(Stat stat)
         {
